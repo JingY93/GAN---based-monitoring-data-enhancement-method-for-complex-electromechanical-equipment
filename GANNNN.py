@@ -67,7 +67,7 @@ class NetG(nn.Module):
             nn.BatchNorm2d(ngf),
             nn.ReLU(inplace=True)
         )
-        # layer5输出尺寸 3x96x96
+        # layer5输出尺寸 1x64x64
         self.layer5 = nn.Sequential(
             nn.ConvTranspose2d(ngf, 1, 4, 2, 1, bias=False),
             nn.Tanh()
@@ -87,7 +87,7 @@ class NetG(nn.Module):
 class NetD(nn.Module):
     def __init__(self, ndf):
         super(NetD, self).__init__()
-        # layer1 输入 3 x 96 x 96, 输出 (ndf) x 32 x 32#64
+        # layer1 输入 1 x 64 x 64, 输出 (ndf) x 32 x 32#64
         self.layer1 = nn.Sequential(
             nn.Conv2d(1, ndf, kernel_size=5, stride=3, padding=1, bias=False),
             nn.BatchNorm2d(ndf),
